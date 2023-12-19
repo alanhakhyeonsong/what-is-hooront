@@ -5,6 +5,8 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "allowJs": true,
+    "strictNullChecks": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -14,11 +16,24 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /** Model */
+    "emitDecoratorMetadata": true,
+    // class-transformer,, class-validate를 사용하기 위해 true
+    "experimentalDecorators": true,
+    // true인 경우 모델 클래스의 기본값을 무조건 넣어야 해서. false로 설정
+    "strictPropertyInitialization": false,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Alias */
+    "paths": {
+      "@/*": ["./src/*"],
+      "@markup/*": ["./src/markup/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

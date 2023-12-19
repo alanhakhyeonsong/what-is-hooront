@@ -1,0 +1,6 @@
+*.md
+*.html
+build
+dist
+static
+public/mockServiceWorker.js
