@@ -15,7 +15,7 @@ export const allRoutes: RouteObject[] = [
     /* 중첩 구조 */
     children: [
       {
-        path: '/example1',
+        path: 'example1',
         element: <Suspense fallback={loading}><Example1 /></Suspense>
       }
     ]
