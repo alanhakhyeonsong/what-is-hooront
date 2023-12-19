@@ -1,9 +1,10 @@
-const Example1 = () => {
-  return (
-    <>
-      <h1>main 페이지에 중첩된 example page</h1>
-    </>
-  );
-};
+import Example1 from '../../components/example1/Example1';
 
-export default Example1;
+const Example1Page = () => {
+
+  return (
+    <Example1 />
+  );
+}
+
+export default Example1Page;

@@ -1,9 +1,9 @@
-const Example2 = () => {
+import Example2 from '../../components/example2/Example2';
+
+const Example2Page = () => {
   return (
-    <>
-      <h1>Example2 page</h1>
-    </>
+    <Example2 />
   );
 };
 
-export default Example2;
+export default Example2Page;
