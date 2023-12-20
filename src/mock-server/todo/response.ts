@@ -5,11 +5,11 @@ import { createListDatabase, createResponseList, getResponseListData } from '@/m
 
 const listDatabase = createListDatabase(
   (index: number) => ({
-    todoId: crypto.randomUUID(),
+    todoId: `${index + 1}`,
     title: `title_${index}`,
     writer: 'Ramos',
-    complete: false,
-    createAt: new Date().toISOString,
+    complete: `${false}`,
+    createAt: new Date().toISOString(),
   }),
   5000
 );
