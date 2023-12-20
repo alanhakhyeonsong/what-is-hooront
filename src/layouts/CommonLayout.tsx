@@ -1,7 +1,7 @@
 import { Layout, Menu } from 'antd';
 import { Content, Footer, Header } from 'antd/es/layout/layout';
 import { Suspense } from 'react';
-import { Link,Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const items = [
   {
