@@ -1,2 +1,2 @@
 /** API BASE URL */
-export const API_BASE_URL = 'https://www.ramos.com'; // TODO: env 분리
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
