@@ -5,7 +5,7 @@ import { HttpClient } from './httpClient';
 
 // HttpClient 생성
 const httpClient = new HttpClient({
-  baseURL: '', // TODO
+  baseURL: 'https://www.ramos.com', // TODO: env 분리
   paramsSerializer: (params) => {
     return qs.stringify(params, { arrayFormat: 'repeat' });
   },
