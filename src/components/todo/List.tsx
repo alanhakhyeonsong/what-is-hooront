@@ -18,8 +18,10 @@ type TodoListProps = {
 
 const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [todoId, setTodoId] = useState('');
 
-  const showModal = () => {
+  const showEditModal = (id: string) => {
+    setTodoId(id);
     setIsEditModalOpen(true);
   };
 
@@ -58,9 +60,9 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
     {
       title: '-',
       dataIndex: 'todoId',
-      render: (todoId, recode) => (
+      render: (id) => (
         <>
-          <Button onClick={() => showModal()}
+          <Button onClick={() => showEditModal(id)}
             type='primary'
             // href={`/todo/edit/${todoId}`}
             >
@@ -69,7 +71,6 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
           <TodoEdit
             isModalOpen={isEditModalOpen}
             todoId={todoId}
-            item={recode}
             handleOk={handleOk}
             handleCancel={handleCancel}
           />

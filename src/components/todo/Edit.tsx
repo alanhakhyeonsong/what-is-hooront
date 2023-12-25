@@ -1,24 +1,32 @@
 import { Modal } from 'antd';
 
-import { TodoListItemModel } from '@/http/models';
+import { useQueryGetTodoItem } from '@/http/queries';
 
 type EditModalProps = {
   isModalOpen: boolean;
   todoId: string;
-  item: TodoListItemModel;
   handleOk: () => void;
   handleCancel: () => void;
 };
 
-const TodoEdit = ({ isModalOpen, todoId, item, handleOk, handleCancel }: EditModalProps) => {
+const TodoEdit = ({ isModalOpen, todoId, handleOk, handleCancel }: EditModalProps) => {
+  const todoInfo = useQueryGetTodoItem(
+    {
+      'todoId': todoId ?? '',
+    },
+    true
+  );
 
   return (
     <>
       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <h1>수정 모달</h1>
         <p>Todo ID: {todoId}</p>
-        <p>제목: {item.title}</p>
-        <p>작성자: {item.writer}</p>
-        <p>수행 여부: {item.complete}</p>
+        <p>제목: {todoInfo.data?.title}</p>
+        <p>작성자: {todoInfo.data?.writer}</p>
+        <p>내용: {todoInfo.data?.content}</p>
+        <p>수행 여부: {todoInfo.data?.complete}</p>
+        <p>작성일: {todoInfo.data?.createAt}</p>
       </Modal>
     </>
   )
