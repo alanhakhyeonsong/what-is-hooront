@@ -95,7 +95,7 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
           <Modal open={isDeleteModalOpen}
             onOk={() => handleOk('delete')}
             onCancel={() => handleCancel('delete')}>
-            <h1>삭제 모달</h1>
+            <h1>{todoId}번 TODO Item을 삭제하시겠습니까?</h1>
           </Modal>
         </>
       ),
