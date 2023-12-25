@@ -23,27 +23,18 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
 
   const showModal = (id: string, modalType: string) => {
     setTodoId(id);
-    if (modalType === 'edit') {
-      setIsEditModalOpen(true);
-    } else if (modalType === 'delete') {
-      setIsDeleteModalOpen(true);
-    }
+    // eslint-disable-next-line no-unused-expressions
+    modalType === 'edit' ? setIsEditModalOpen(true) : setIsDeleteModalOpen(true);
   };
 
   const handleOk = (modalType: string) => {
-    if (modalType === 'edit') {
-      setIsEditModalOpen(false);
-    } else if (modalType === 'delete') {
-      setIsDeleteModalOpen(false);
-    }
+    // eslint-disable-next-line no-unused-expressions
+    modalType === 'edit' ? setIsEditModalOpen(false) : setIsDeleteModalOpen(false);
   };
   
   const handleCancel = (modalType: string) => {
-    if (modalType === 'edit') {
-      setIsEditModalOpen(false);
-    } else if (modalType === 'delete') {
-      setIsDeleteModalOpen(false);
-    }
+    // eslint-disable-next-line no-unused-expressions
+    modalType === 'edit' ? setIsEditModalOpen(false) : setIsDeleteModalOpen(false);
   };
 
   // AntD 게시판 컬럼
