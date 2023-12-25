@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { delay, http, HttpResponse } from 'msw';
 
-import { createListDatabase, createResponseList, getResponseListData } from '@/mock-server/utils';
+import { createListDatabase, createResponse, createResponseList, getResponseListData } from '@/mock-server/utils';
 
 const listDatabase = createListDatabase(
   (index: number) => ({
@@ -46,6 +46,21 @@ export const getList: Parameters<typeof http.get>[1] = async (info) => {
 }
 
 // 상세
+export const getView: Parameters<typeof http.get>[1] = async (info) => {
+  await delay(125);
+  const todoId = info.params['0'];
+
+  return HttpResponse.json(
+    createResponse({
+      todoId,
+      title: `title_${todoId}`,
+      writer: `Ramos`,
+      complete: `${false}`,
+      createAt: new Date().toISOString(),
+      content: `상세정보 테스트 ${todoId}`
+    })
+  );
+}
 
 // 등록
 
