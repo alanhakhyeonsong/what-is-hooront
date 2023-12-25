@@ -1,10 +1,13 @@
 import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { useState } from 'react';
 
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DEFAULT_TOTAL } from '@/constants';
 import { usePagination } from '@/hooks/urlBaseFetch';
 import { TodoListItemModel } from '@/http/models'
 import { PagingInfo } from '@/types/paging';
+
+import TodoEdit from './Edit';
 
 type TodoListProps = {
   onUpdatePage: ReturnType<typeof usePagination>;
@@ -14,6 +17,20 @@ type TodoListProps = {
 }
 
 const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsEditModalOpen(false);
+  };
+  
+  const handleCancel = () => {
+    setIsEditModalOpen(false);
+  };
+
   // AntD 게시판 컬럼
   const columns: ColumnsType<TodoListItemModel> = [
     {
@@ -41,13 +58,22 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
     {
       title: '-',
       dataIndex: 'todoId',
-      render: (todoId) => (
-        <Button
-          type='primary'
-          href={`/todo/edit/${todoId}`}
-        >
-          수정
-        </Button>
+      render: (todoId, recode) => (
+        <>
+          <Button onClick={() => showModal()}
+            type='primary'
+            // href={`/todo/edit/${todoId}`}
+            >
+            수정
+          </Button>
+          <TodoEdit
+            isModalOpen={isEditModalOpen}
+            todoId={todoId}
+            item={recode}
+            handleOk={handleOk}
+            handleCancel={handleCancel}
+          />
+        </>
       ),
     }
   ];
