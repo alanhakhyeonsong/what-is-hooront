@@ -7,6 +7,7 @@ import { CommonLayout } from '@/layouts/CommonLayout';
 const Example1 = lazy(() => import('@/pages/example1/Example1'));
 const About = lazy(() => import('@/pages/about/About'));
 const TodoList = lazy(() => import('@/pages/todo/List'));
+const TodoEdit = lazy(() => import('@/pages/todo/Edit'));
 
 const loading = <div>loading...</div>
 
@@ -31,6 +32,10 @@ export const allRoutes: RouteObject[] = [
           {
             path: '/todo',
             element: <Suspense fallback={loading}><TodoList /></Suspense>
+          },
+          {
+            path: '/todo/edit/:todoId',
+            element: <Suspense fallback={loading}><TodoEdit /></Suspense>
           }
         ],
       },
