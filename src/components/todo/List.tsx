@@ -1,4 +1,4 @@
-import { Button, Table } from 'antd';
+import { Button, Modal, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 
@@ -18,19 +18,32 @@ type TodoListProps = {
 
 const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [todoId, setTodoId] = useState('');
 
-  const showEditModal = (id: string) => {
+  const showModal = (id: string, modalType: string) => {
     setTodoId(id);
-    setIsEditModalOpen(true);
+    if (modalType === 'edit') {
+      setIsEditModalOpen(true);
+    } else if (modalType === 'delete') {
+      setIsDeleteModalOpen(true);
+    }
   };
 
-  const handleOk = () => {
-    setIsEditModalOpen(false);
+  const handleOk = (modalType: string) => {
+    if (modalType === 'edit') {
+      setIsEditModalOpen(false);
+    } else if (modalType === 'delete') {
+      setIsDeleteModalOpen(false);
+    }
   };
   
-  const handleCancel = () => {
-    setIsEditModalOpen(false);
+  const handleCancel = (modalType: string) => {
+    if (modalType === 'edit') {
+      setIsEditModalOpen(false);
+    } else if (modalType === 'delete') {
+      setIsDeleteModalOpen(false);
+    }
   };
 
   // AntD 게시판 컬럼
@@ -62,7 +75,7 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
       dataIndex: 'todoId',
       render: (id) => (
         <>
-          <Button onClick={() => showEditModal(id)}
+          <Button onClick={() => showModal(id, 'edit')}
             type='primary'
             // href={`/todo/edit/${todoId}`}
             >
@@ -71,9 +84,28 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
           <TodoEdit
             isModalOpen={isEditModalOpen}
             todoId={todoId}
-            handleOk={handleOk}
-            handleCancel={handleCancel}
+            handleOk={() => handleOk('edit')}
+            handleCancel={() => handleCancel('edit')}
           />
+        </>
+      ),
+    },
+    {
+      title: '-',
+      dataIndex: 'todoId',
+      render: (id) => (
+        <>
+          <Button onClick={() => showModal(id, 'delete')}
+            type='primary'
+            danger
+          >
+            삭제
+          </Button>
+          <Modal open={isDeleteModalOpen}
+            onOk={() => handleOk('delete')}
+            onCancel={() => handleCancel('delete')}>
+            <h1>삭제 모달</h1>
+          </Modal>
         </>
       ),
     }
