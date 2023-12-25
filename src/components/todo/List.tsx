@@ -37,7 +37,7 @@ const TodoList = ({ listData, pageData, isLoading, onUpdatePage }: TodoListProps
       title: 'TODO ID',
       dataIndex: 'todoId',
       // 상세 화면으로 이동 가능
-      render: (text) => <a>{text}</a>
+      render: (text) => <a href={`/todo/${text}`}>{text}</a>
     },
     {
       title: '제목',
